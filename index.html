@@ -6,39 +6,38 @@
   <link href="https://fonts.googleapis.com/css2?family=Alice&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Alfa Slab One&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/index.css">
-
   <body>
-
     <header>
-    <span class="menu-icon" onclick="toggleSidebar()">☰</span>
-    <div class="logo"><h1>MIC - Music Is Connection</h1></div> 
-      <nav>
-        <a href="#">Login</a>
-        <a href="#">Cadastro</a>
-        <a href="#">Sobre o site</a>
-        <a href="#">Sobre as Criadoras</a>
-      </nav>
+        <div class="logo-container"><span class="menu-icon" onclick="toggleSidebar()">☰</span>
+          <div class="logo"><h1>MIC - Music Is Connection</h1></div> </div>
+          <nav>
+            <a href="#">Login</a>
+            <a href="#">Cadastro</a>
+            <a href="#">Sobre o site</a>
+            <a href="#">Sobre as Criadoras</a>
+        </nav>
     </header>
-    
     <div id="sidebar" class="sidebar">
-      <span class="close-btn" onclick="toggleSidebar()">×</span>
-          <a href="index.html">Página inicial</a>
-          <a href="eventos.html">Eventos</a>
-          <a href="aulas.html">Aulas</a>
-          <a href="cover.html">Covers</a>
-    </div>
-
-    <section class="hero">
-      <div class="hero-content">
-        <h2>The Subway</h2> <!-- Frase de destaque -->
-        <p>Novo lançamento da cantora Chappel Roan</p> <!-- Descrição -->
-        <a href="https://www.youtube.com/watch?v=woLfAvD5iXI"><button class="btn">Ouça Agora</button></a> <!-- Botão de ação -->
+        <span class="close-btn" onclick="toggleSidebar()">×</span>
+        <a href="index.html">Página inicial</a>
+        <a href="eventos.html">Eventos</a>
+        <a href="aulas.html">Aulas</a>
+        <a href="cover.html">Covers</a>
       </div>
-    </section>
+
+      <section class="hero">
+        <div class="hero-content">
+          <h2>The Subway</h2> <!-- Frase de destaque -->
+          <p>Novo lançamento da cantora Chappel Roan</p> <!-- Descrição -->
+          <a href="https://www.youtube.com/watch?v=woLfAvD5iXI"><button class="btn">Ouça Agora</button></a> <!-- Botão de ação -->
+        </div>
+      </section>
       
-    <section>
+      <!-- Seção de últimos lançamentos -->
+      <section>
         <h3 class="section-title">🎧 Últimos Lançamentos</h3>
         <div class="cards">
+          <!-- Card 1 -->
           <div class="card">
             <img src="img/eds.jpg" alt="Álbum">
             <h4>Música: A Little More</h4>
@@ -46,7 +45,7 @@
             <br>
             <a href="https://www.youtube.com/watch?v=O_0Wn73AnC8"><button class="btn">Ouça o novo hit de Ed Sheeran</button></a>
           </div>
-          
+          <!-- Card 2 -->
           <div class="card">
             <img src="img/Sabrina.jpg" alt="Show">
             <h4>Música: Manchild</h4>
@@ -54,7 +53,7 @@
             <br>
             <a href="https://www.youtube.com/watch?v=aSugSGCC12I"><button class="btn">Ouça o novo hit de Sabrina Carpenter</button></a>
           </div>
-          
+          <!-- Card 3 -->
           <div class="card">
             <img src="img/luisa.jpg" alt="Banda">
             <h4>Música: Bate Volta</h4>
@@ -62,7 +61,6 @@
             <br>
             <a href="https://www.youtube.com/watch?v=QJMYeMf_DpE"><button class="btn">Ouça o novo hit de DJ TOPO</button></a>
           </div>
-
         </div>
       </section>
 
