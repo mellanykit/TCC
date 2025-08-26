@@ -7,145 +7,8 @@
   <title>MIC</title>
   <link href="https://fonts.googleapis.com/css2?family=Alice&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Alfa Slab One&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/cadastro.css">
   
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Alice', sans-serif;
-    }
-
-    body {
-      background: black;
-      color: #fff;
-    }
-
-    .logo {
-      position: absolute; /* Posiciona em relação à página */
-      left: 50%; /* Centraliza horizontalmente */
-      top: 6%; /* Posiciona verticalmente */
-      transform: translate(-50%, -50%); /* Ajusta centralização */
-      font-family: 'Alice', serif; /* Fonte importada */
-      font-size: 25px; /* Tamanho da fonte */
-      font-weight: normal; /* Peso normal */
-    }
-
-    header {
-      background: linear-gradient(to right, #DC143C, #FF4500);
-      padding: 40px 60px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .news-section h1 {
-      font-family: 'Alfa Slab One', serif; /* Fonte especial */
-      font-size: 36px; /* Tamanho do título */
-      font-weight: normal; /* Peso normal */
-      text-align: center; /* Centralizado */
-    }
-    nav a {
-      color: white; 
-      text-decoration: none; 
-      margin-left: 20px; 
-    }
-
-    nav a:hover {
-      color: black; 
-    }
-
-    .news-section h2 {
-      font-family: 'Alfa Slab One', serif; /* Usa a fonte Monoton */
-      font-size: 36px;
-      font-weight: normal;
-      text-align: center; /* Centraliza o texto */
-    }
-    .form-container {
-      background:linear-gradient(to right, #DC143C, #FF4500);
-      width: 500px;
-      border-radius: 20px;
-      padding: 30px 60px;
-      margin: 0 auto;
-      text-align: center;
-      color: white;
-    }
-
-    .form-container input {
-      width: 100%;
-      padding: 10px;
-      margin: 10px 0;
-      border: none;
-      border-radius: 10px;
-      background-color: #f3efef;
-    }
-
-    .form-container button {
-      width: 100%;
-      padding: 10px;
-      background-color: #1a1311;
-      color: white;
-      font-size: 18px;
-      border: none;
-      border-radius: 15px;
-      cursor: pointer;
-      margin-top: 15px;
-    }
-
-    .form-container p {
-      margin-top: 20px;
-      font-size: 12px;
-    }
-
-    .form-container a {
-      text-decoration: none;
-      color: black;
-    }
-    .news-section img {
-      display: block;
-      margin: 0 auto;
-      height: auto;
-      align-content: center;
-    }
-
-    .sidebar {
-      position: fixed;
-      top: 0;
-      left: -250px; 
-      width: 250px;
-      height: 100%;
-      background-color: black;
-      padding: 20px;
-      box-sizing: border-box;
-      transition: left 0.3s ease;
-      z-index: 1000;
-    }
-
-    .sidebar a {
-      display: block;
-      color: white;
-      text-decoration: none;
-      margin: 15px 0;
-      font-size: 16px;
-    }
-
-    .sidebar a:hover {
-      color: #DC143C;
-    }
-
-    .sidebar.open {
-      left: 0;
-    }
-
-    .close-btn {
-      font-size: 24px;
-      color: white;
-      cursor: pointer;
-      position: absolute;
-      top: 10px;
-      right: 15px;
-    }
-  </style>
-
 <body>
     <header>
     <span class="menu-icon" onclick="toggleSidebar()">☰</span>
@@ -162,7 +25,7 @@
         <br><br><br><br><br>
   
         <div class="form-container">
-          <img src="Logo.png" alt="Login" style="width: 200px;">
+          <img src="img/Logo.png" alt="Login" style="width: 200px;">
           <h2>Cadastro</h2>
           <br>
     
@@ -224,7 +87,7 @@
       }
     </script>
 
-    <script src="js.js"></script> 
+    <script src="js/js.js"></script> 
 </body>   
 </head>
 </html>

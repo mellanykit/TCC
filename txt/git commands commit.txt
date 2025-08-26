@@ -1,0 +1,8 @@
+git status	/ "Pergunta" ao git como esta seu projeto agora
+git add .     / adicionar as alterações que serão enviadas para o github
+git status
+
+git commit -m "comentário/titulo da versão"	/Cria um ponto de salvamento no histórico do projeto, 
+						/Uma "versão"
+
+git push origin main 		/Envia seus commits para o GitHub.
