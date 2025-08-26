@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+  <meta charset="UTF-8">
+  <title>MIC</title>
+  <link href="https://fonts.googleapis.com/css2?family=Alice&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Alfa Slab One&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Alice', sans-serif;
+    }
+
+    body {
+      background: black;
+      color: #fff;
+    }
+
+    .logo {
+      position: absolute; /* Posiciona em relação à página */
+      left: 50%; /* Centraliza horizontalmente */
+      top: 6%; /* Posiciona verticalmente */
+      transform: translate(-50%, -50%); /* Ajusta centralização */
+      font-family: 'Alice', serif; /* Fonte importada */
+      font-size: 25px; /* Tamanho da fonte */
+      font-weight: normal; /* Peso normal */
+    }
+
+    header {
+      background: linear-gradient(to right, #DC143C, #FF4500);
+      padding: 40px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .news-section h1 {
+      font-family: 'Alfa Slab One', serif; /* Fonte especial */
+      font-size: 36px; /* Tamanho do título */
+      font-weight: normal; /* Peso normal */
+      text-align: center; /* Centralizado */
+    }
+    nav a {
+      color: white; 
+      text-decoration: none; 
+      margin-left: 20px; 
+    }
+
+    nav a:hover {
+      color: black; 
+    }
+
+    .news-section h2 {
+      font-family: 'Alfa Slab One', serif; /* Usa a fonte Monoton */
+      font-size: 36px;
+      font-weight: normal;
+      text-align: center; /* Centraliza o texto */
+    }
+    .form-container {
+      background:linear-gradient(to right, #DC143C, #FF4500);
+      width: 500px; /* Largura fixa */
+      border-radius: 20px; /* Bordas arredondadas */
+      padding: 30px 60px; /* Espaçamento interno */
+      margin: 0 auto; /* Centraliza horizontalmente */
+      text-align: center; /* Centraliza texto */
+      color: white; /* Cor do texto */
+    }
+
+    /* Estilo dos campos de email e senha */
+    .form-container input[type="email"],
+    .form-container input[type="password"] {
+      width: 100%; /* Ocupa toda a largura */
+      padding: 10px; /* Espaçamento interno */
+      margin: 10px 0; /* Margem acima e abaixo */
+      border: none; /* Sem borda */
+      border-radius: 10px; /* Bordas arredondadas */
+      background-color: #f3efef; /* Cor de fundo */
+    }
+
+    /* Estilo do botão de login */
+    .form-container button {
+      width: 100%;
+      padding: 10px;
+      background-color: #1a1311; /* Cor de fundo do botão */
+      color: white;
+      font-size: 18px;
+      border: none;
+      border-radius: 15px;
+      cursor: pointer; /* Muda o cursor ao passar o mouse */
+      margin-top: 15px;
+    }
+
+    /* Estilo do texto dentro do form */
+    .form-container p {
+      margin-top: 20px;
+      font-size: 12px;
+    }
+    .form-container a{
+      text-decoration: none; /* Remove o sublinhado */
+      color:white;
+    }
+    .news-section img {
+      display: block;
+      margin: 0 auto;
+      height: auto;
+      align-content: center;
+    }
+
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: -250px; 
+      width: 250px;
+      height: 100%;
+      background-color: black;
+      padding: 20px;
+      box-sizing: border-box;
+      transition: left 0.3s ease;
+      z-index: 1000;
+    }
+
+    .sidebar a {
+      display: block;
+      color: white;
+      text-decoration: none;
+      margin: 15px 0;
+      font-size: 16px;
+    }
+
+    .sidebar a:hover {
+      color: #DC143C;
+    }
+
+    .sidebar.open {
+      left: 0;
+    }
+
+    .close-btn {
+      font-size: 24px;
+      color: white;
+      cursor: pointer;
+      position: absolute;
+      top: 10px;
+      right: 15px;
+    }
+  </style>
+
+<body>
+    <header>
+    <span class="menu-icon" onclick="toggleSidebar()">☰</span>
+      <div class="logo"><h1>MIC - Music Is Connection</h1></div> 
+      <nav>
+      <a href="#">Login</a>
+      <a href="#">Cadastro</a>
+      <a href="#">Sobre o site</a>
+      <a href="#">Sobre as Criadoras</a>
+    </nav>
+    </header>
+    <section class="news-section">
+
+        <br><br><br><br><br><br><br><br>
+  
+        <div class="form-container">
+          <img src="Logo.png" alt="Login" style="width: 200px;">
+          <h2>Login</h2>
+          <br>
+    
+          <form onsubmit="logar(event)">
+            <!-- Formulário com função JS ao enviar -->
+    
+            <div style="text-align: left;">Email:</div>
+            <!-- Rótulo do campo de email -->
+            <input type="email" id="login" required>
+            <!-- Campo de email obrigatório -->
+    
+            <div style="text-align: left;">Senha:</div>
+            <!-- Rótulo do campo de senha -->
+            <input type="password" id="senha" required>
+            <!-- Campo de senha obrigatório -->
+    
+            <button type="submit">Login</button>
+            <!-- Botão para enviar o formulário -->
+            <br>
+          </form>
+    
+          <br><br>
+          <a href="cadastro.html">Faça seu cadastro</a>
+        </div>
+        <br><br><br><br>
+    
+        <div id="sidebar" class="sidebar">
+        <span class="close-btn" onclick="toggleSidebar()">×</span>
+        <a href="index.html">Página inicial</a>
+        <a href="eventos.html">Eventos</a>
+        <a href="aulas.html">Aulas</a>
+        <a href="cover.html">Covers</a>
+        </div>
+    </section>
+    <script>
+      // Script JavaScript incorporado
+    
+      function logar(event){
+        event.preventDefault(); 
+        // Impede o comportamento padrão do formulário (recarregar a página)
+    
+        var login = document.getElementById('login').value;
+        // Pega o valor digitado no campo de email
+    
+        var senha = document.getElementById('senha').value;
+        // Pega o valor digitado no campo de senha
+    
+        if(login === "mell@gmail.com" && senha === "123"){
+          // Verifica se os dados são "admin"
+    
+          alert("Login bem-sucedido!");
+          // Exibe mensagem de sucesso
+        } else {
+          alert("Usuário ou senha incorretos!");
+          // Exibe mensagem de erro
+        }
+      }
+    </script>
+
+    <script src="js.js"></script> 
+</body>   
+</head>
+</html>
