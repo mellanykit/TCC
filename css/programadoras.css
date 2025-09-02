@@ -10,22 +10,55 @@
       color: #fff;
     }
 
-    .logo {
-      position: absolute;
-      left: 50%;
-      top: 6%;
-      transform: translate(-50%, -50%);
-      font-family: 'Alice', serif;
-      font-size: 25px;
-      font-weight: normal;
-    }
-
     header {
       background: linear-gradient(to right, #DC143C, #FF4500);
       padding: 40px 60px;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      height: 110px;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+    }
+
+    .menu-icon {
+      font-size: 20px;
+      cursor: pointer;
+      margin-right: 15px;
+    }
+
+    .logo {
+      position: relative; 
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      /*transform: translate(-50%, -50%); */
+      font-family: 'Alice', serif; 
+      font-size: 25px; 
+      font-weight: normal; 
+      margin-left: 15px;
+    }
+
+    @media screen and (max-width: 1020px){
+      .logo {
+        font-size: 20px;
+        margin: 10px;
+      }
+    }
+
+    @media screen and (max-width: 650px){
+      header {
+        padding: 20px 30px;
+      }
+
+      .logo {
+        font-size: 12px;
+        margin: 20px;
+      }
     }
 
     .news-section h1 {

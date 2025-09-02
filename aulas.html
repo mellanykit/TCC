@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+
+  <meta charset="UTF-8">
+  <title>MIC</title>
+  <link href="https://fonts.googleapis.com/css2?family=Alice&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Alfa Slab One&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/aulas.css">
+
+  <body>
+    <header>
+        <div class="logo-container"><span class="menu-icon" onclick="toggleSidebar()">☰</span>
+          <div class="logo"><h1>MIC - Music Is Connection</h1></div> </div>
+            <nav>
+              <a href="#">Login</a>
+              <a href="#">Cadastro</a>
+              <a href="#">Sobre o site</a>
+              <a href="#">Sobre as Criadoras</a>
+          </nav>
+    </header>
+    
+    <div id="sidebar" class="sidebar">
+        <span class="close-btn" onclick="toggleSidebar()">×</span>
+          <a href="index.html">Página inicial</a>
+          <a href="eventos.html">Eventos</a>
+          <a href="aulas.html">Aulas</a>
+          <a href="cover.html">Covers</a>
+    </div>
+    <br><br><br>
+
+    <div class="form-container">
+        <h1>Exercício de Respiração</h1>
+        <br><br>
+        <div class="controls">
+         
+        <select id="timeSelect">
+            <option value="4">4x4x4</option>
+            <option value="6">6x6x6</option>
+            <option value="8">8x8x8</option>
+            <option value="10">10x10x10</option>
+            <option value="12">12x12x12</option>
+        </select>
+            <button onclick="startBreath()">Iniciar</button>
+            <button onclick="stopBreath()">Parar</button>
+            <button onclick="resetBreath()">Reiniciar</button> </div>
+        <div class="container">
+            <div class="circle" id="breathCircle">Inspirar</div>
+            <svg>
+                <circle class="progress" cx="100" cy="100" r="90"/>
+                <circle class="progress-bar" id="progressBar" cx="100" cy="100" r="90"/>
+            </svg>
+        </div>
+    </div>
+    <script>
+        const timeSelect = document.getElementById('timeSelect');
+        const breathCircle = document.getElementById('breathCircle');
+        const progressBar = document.getElementById('progressBar');
+        const phases = ['Inspirar', 'Segurar', 'Expirar'];
+        let isRunning = false, startTime = null, animationFrameId = null;
+        let breathTime = +timeSelect.value, totalTime = breathTime * 3;
+        const circumference = 2 * Math.PI * 90;
+
+        function updateAnimation() {
+            breathTime = +timeSelect.value;
+            totalTime = breathTime * 3;
+            breathCircle.style.animationDuration = `${totalTime}s`;
+            progressBar.style.animationDuration = `${totalTime}s`;
+            progressBar.style.strokeDasharray = circumference;
+            progressBar.style.strokeDashoffset = circumference;
+        }
+
+        function updatePhase(t) {
+            startTime = startTime || t;
+            const elapsed = (t - startTime) / 1000;
+            breathCircle.textContent = phases[Math.floor((elapsed % totalTime) / breathTime) % 3];
+            if (isRunning) animationFrameId = requestAnimationFrame(updatePhase);
+        }
+
+        function startBreath() {
+            if (!isRunning) {
+                isRunning = true;
+                breathCircle.style.animationPlayState = 'running';
+                progressBar.style.animationPlayState = 'running';
+                startTime = null;
+                animationFrameId = requestAnimationFrame(updatePhase);
+            }
+        }
+
+        function stopBreath() {
+            if (isRunning) {
+                isRunning = false;
+                breathCircle.style.animationPlayState = 'paused';
+                progressBar.style.animationPlayState = 'paused';
+                cancelAnimationFrame(animationFrameId);
+            }
+        }
+
+        function resetBreath() {
+            stopBreath();
+            breathCircle.style.animation = 'none';
+            progressBar.style.animation = 'none';
+            breathCircle.textContent = phases[0];
+            startTime = null;
+            setTimeout(() => {
+                updateAnimation();
+                breathCircle.style.animation = `breathe ${totalTime}s infinite paused`;
+                progressBar.style.animation = `progress ${totalTime}s linear infinite paused`;
+            }, 0);
+        }
+
+        timeSelect.addEventListener('change', resetBreath);
+        updateAnimation();
+    </script>
+
+    <script src="js/js.js"></script>  
+</body>
+</head>
+</html>
