@@ -75,56 +75,13 @@
     nav a:hover {
       color: black; 
     }
-
     .news-section h2 {
       font-family: 'Alfa Slab One', serif; /* Usa a fonte Monoton */
       font-size: 36px;
       font-weight: normal;
       text-align: center; /* Centraliza o texto */
     }
-    .form-container {
-      background:linear-gradient(to right, #DC143C, #FF4500);
-      width: 500px; /* Largura fixa */
-      border-radius: 20px; /* Bordas arredondadas */
-      padding: 30px 60px; /* Espaçamento interno */
-      margin: 0 auto; /* Centraliza horizontalmente */
-      text-align: center; /* Centraliza texto */
-      color: white; /* Cor do texto */
-    }
 
-    /* Estilo dos campos de email e senha */
-    .form-container input[type="email"],
-    .form-container input[type="password"] {
-      width: 100%; /* Ocupa toda a largura */
-      padding: 10px; /* Espaçamento interno */
-      margin: 10px 0; /* Margem acima e abaixo */
-      border: none; /* Sem borda */
-      border-radius: 10px; /* Bordas arredondadas */
-      background-color: #f3efef; /* Cor de fundo */
-    }
-
-    /* Estilo do botão de login */
-    .form-container button {
-      width: 100%;
-      padding: 10px;
-      background-color: #1a1311; /* Cor de fundo do botão */
-      color: white;
-      font-size: 18px;
-      border: none;
-      border-radius: 15px;
-      cursor: pointer; /* Muda o cursor ao passar o mouse */
-      margin-top: 15px;
-    }
-
-    /* Estilo do texto dentro do form */
-    .form-container p {
-      margin-top: 20px;
-      font-size: 12px;
-    }
-    .form-container a{
-      text-decoration: none; /* Remove o sublinhado */
-      color:black;
-    }
     .news-section img {
       display: block;
       margin: 0 auto;
@@ -169,3 +126,57 @@
       top: 10px;
       right: 15px;
     }
+
+      .form-container {
+      background:linear-gradient(to right, #DC143C, #FF4500);
+      width: 500px; /* Largura fixa */
+      border-radius: 20px; /* Bordas arredondadas */
+      padding: 30px 60px; /* Espaçamento interno */
+      margin: 0 auto; /* Centraliza horizontalmente */
+      text-align: center; /* Centraliza texto */
+      color: white; /* Cor do texto */
+    }
+
+    /* Estilo dos campos de email e senha */
+    .form-container input {
+      width: 100%; /* Ocupa toda a largura */
+      padding: 10px; /* Espaçamento interno */
+      margin: 10px 0; /* Margem acima e abaixo */
+      border: none; /* Sem borda */
+      border-radius: 10px; /* Bordas arredondadas */
+      background-color: #f3efef; /* Cor de fundo */
+    }
+
+    /* Estilo do botão de login */
+    .form-container button {
+      width: 100%;
+      padding: 10px;
+      background-color: #1a1311; /* Cor de fundo do botão */
+      color: white;
+      font-size: 18px;
+      border: none;
+      border-radius: 15px;
+      cursor: pointer; /* Muda o cursor ao passar o mouse */
+      margin-top: 15px;
+    }
+    
+     button[disabled]{
+      opacity: 0.7;
+    }
+
+    /* Estilo do texto dentro do form */
+    .form-container p {
+      margin-top: 20px;
+      font-size: 12px;
+    }
+    .form-container a{
+      text-decoration: none; /* Remove o sublinhado */
+      color:black;
+    }
+
+    .error{
+      color: white;
+      background: red;
+      display:none;
+    }
+   

@@ -22,7 +22,7 @@
 
     <section class="news-section">
 
-        <br><br><br><br><br><br><br><br>
+        <br><br><br><br><br>
   
         <div class="form-container">
           <img src="img/Logo.png" alt="Login" style="width: 200px;">
@@ -32,15 +32,21 @@
           <form onsubmit="logar(event)">
             <!-- Formulário com função JS ao enviar -->
     
+            <div>
             <div style="text-align: left;">Email:</div>
-            <input type="email" name="email" placeholder="seuemail@gmail.com" required>
-          
+            <input type="email" name="email" id="email" onchange="onChangeEmail()" placeholder="seuemail@gmail.com" required>
+            <div class="error" id="email-required-error">Email é obrigatório</div>
+            <div class="error" id="email-invalid-error">Email Inválido</div>
+            </div>
+
+            <div>
             <div style="text-align: left;">Senha:</div>
-            <input type="password" name="password" placeholder="senha" required>
-    
-            <button type="button">Login</button>
-            <button type="button">Recuperar senha</button>
-            <!-- Botão para enviar o formulário -->
+            <input type="password" name="password" id="password" onchange="onChangePassword()" placeholder="senha" required>
+            <div class="error" id="password-required-error">Senha é obrigatória</div>
+            </div>
+
+            <button type="button" class="solid" id ="login-button" disabled="true">Login</button>
+            <button type="button" id="recover-password-button" disabled="true" class="clear" >Recuperar senha</button>
             <br>
           </form>
     
@@ -58,33 +64,10 @@
         <a href="forum.html">Fórum</a>
         <a href="zen.html">Zen Area</a>
         </div>
-    </section>
-    <script>
-      // Script JavaScript incorporado
-    
-      function logar(event){
-        event.preventDefault(); 
-        // Impede o comportamento padrão do formulário (recarregar a página)
-    
-        var login = document.getElementById('login').value;
-        // Pega o valor digitado no campo de email
-    
-        var senha = document.getElementById('senha').value;
-        // Pega o valor digitado no campo de senha
-    
-        if(login === "mell@gmail.com" && senha === "123"){
-          // Verifica se os dados são "admin"
-    
-          alert("Login bem-sucedido!");
-          // Exibe mensagem de sucesso
-        } else {
-          alert("Usuário ou senha incorretos!");
-          // Exibe mensagem de erro
-        }
-      }
-    </script>
+      </section>
 
     <script src="js/js.js"></script> 
+    <script src="js/login.js"></script>
 </body>   
 </head>
 </html>
