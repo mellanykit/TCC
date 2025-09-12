@@ -26,6 +26,8 @@
           <a href="eventos.html">Eventos</a>
           <a href="aulas.html">Aulas</a>
           <a href="cover.html">Covers</a>
+          <a href="forum.html">Fórum</a>
+          <a href="zen.html">Zen Area</a>
     </div>
     <br><br><br>
 
@@ -35,6 +37,7 @@
         <div class="controls">
          
         <select id="timeSelect">
+            <option value="2">2x2x2</option>
             <option value="4">4x4x4</option>
             <option value="6">6x6x6</option>
             <option value="8">8x8x8</option>
@@ -52,68 +55,18 @@
             </svg>
         </div>
     </div>
-    <script>
-        const timeSelect = document.getElementById('timeSelect');
-        const breathCircle = document.getElementById('breathCircle');
-        const progressBar = document.getElementById('progressBar');
-        const phases = ['Inspirar', 'Segurar', 'Expirar'];
-        let isRunning = false, startTime = null, animationFrameId = null;
-        let breathTime = +timeSelect.value, totalTime = breathTime * 3;
-        const circumference = 2 * Math.PI * 90;
 
-        function updateAnimation() {
-            breathTime = +timeSelect.value;
-            totalTime = breathTime * 3;
-            breathCircle.style.animationDuration = `${totalTime}s`;
-            progressBar.style.animationDuration = `${totalTime}s`;
-            progressBar.style.strokeDasharray = circumference;
-            progressBar.style.strokeDashoffset = circumference;
-        }
+    <div class="right-container">
 
-        function updatePhase(t) {
-            startTime = startTime || t;
-            const elapsed = (t - startTime) / 1000;
-            breathCircle.textContent = phases[Math.floor((elapsed % totalTime) / breathTime) % 3];
-            if (isRunning) animationFrameId = requestAnimationFrame(updatePhase);
-        }
+        <h1>Aulas</h1>
+        <p>
+            Colocar aqui barra de video Youtube
+        </p>
+    </div>
 
-        function startBreath() {
-            if (!isRunning) {
-                isRunning = true;
-                breathCircle.style.animationPlayState = 'running';
-                progressBar.style.animationPlayState = 'running';
-                startTime = null;
-                animationFrameId = requestAnimationFrame(updatePhase);
-            }
-        }
 
-        function stopBreath() {
-            if (isRunning) {
-                isRunning = false;
-                breathCircle.style.animationPlayState = 'paused';
-                progressBar.style.animationPlayState = 'paused';
-                cancelAnimationFrame(animationFrameId);
-            }
-        }
-
-        function resetBreath() {
-            stopBreath();
-            breathCircle.style.animation = 'none';
-            progressBar.style.animation = 'none';
-            breathCircle.textContent = phases[0];
-            startTime = null;
-            setTimeout(() => {
-                updateAnimation();
-                breathCircle.style.animation = `breathe ${totalTime}s infinite paused`;
-                progressBar.style.animation = `progress ${totalTime}s linear infinite paused`;
-            }, 0);
-        }
-
-        timeSelect.addEventListener('change', resetBreath);
-        updateAnimation();
-    </script>
-
-    <script src="js/js.js"></script>  
+    <script src="js/js.js"></script> 
+    <script src="js/jsaulas.js"></script> 
 </body>
 </head>
 </html>

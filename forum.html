@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MIC - Fórum</title>
+  <link href="https://fonts.googleapis.com/css2?family=Alice&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/forum.css">
+</head>
+<body>
+  <header>
+    <div class="logo-container"><span class="menu-icon" onclick="toggleSidebar()">☰</span>
+    <div class="logo"><h1>MIC - Music Is Connection</h1></div></div>
+    <nav>
+      <a href="#">Login</a>
+      <a href="#">Cadastro</a>
+      <a href="#">Sobre o site</a>
+      <a href="#">Sobre as Criadoras</a>
+    </nav>
+  </header>
+
+  <div id="sidebar" class="sidebar">
+    <span class="close-btn" onclick="toggleSidebar()">×</span>
+    <a href="index.html">Página inicial</a>
+    <a href="eventos.html">Eventos</a>
+    <a href="aulas.html">Aulas</a>
+    <a href="cover.html">Covers</a>
+    <a href="forum.html">Fórum</a>
+    <a href="zen.html">Zen Area</a>
+  </div>
+
+  <section>
+    <h3 class="section-title">Fórum de Discussão</h3>
+    <div class="card">
+      <h4>Criar Nova Postagem</h4><br>
+      <input id="post-title" class="input-field" type="text" placeholder="Título da Postagem">
+      <textarea id="post-content" class="textarea-field" placeholder="Escreva sua postagem..."></textarea>
+      <button onclick="createPost()" class="btn">Postar</button>
+    </div>
+    <div id="posts-container"></div>
+  </section>
+
+  <script>
+    let posts = [];
+
+    function loadPosts() {
+      const savedPosts = localStorage.getItem('forum-posts');
+      if (savedPosts) {
+        posts = JSON.parse(savedPosts);
+      }
+      renderPosts();
+    }
+
+    function savePosts() {
+      localStorage.setItem('forum-posts', JSON.stringify(posts));
+    }
+
+    function createPost() {
+      const title = document.getElementById('post-title').value.trim();
+      const content = document.getElementById('post-content').value.trim();
+      if (title && content) {
+        const post = {
+          id: Date.now(),
+          title,
+          content,
+          replies: []
+        };
+        posts.push(post);
+        document.getElementById('post-title').value = '';
+        document.getElementById('post-content').value = '';
+        savePosts();
+        renderPosts();
+      } else {
+        alert('Por favor, preencha o título e o conteúdo da postagem.');
+      }
+    }
+
+    function addReply(postId) {
+      const replyInput = document.getElementById(`reply-input-${postId}`);
+      const replyContent = replyInput.value.trim();
+      if (replyContent) {
+        const post = posts.find(p => p.id === postId);
+        post.replies.push(replyContent);
+        replyInput.value = '';
+        savePosts();
+        renderPosts();
+      } else {
+        alert('Por favor, escreva uma resposta.');
+      }
+    }
+
+    function deletePost(postId) {
+      if (confirm('Tem certeza que deseja deletar esta postagem?')) {
+        posts = posts.filter(p => p.id !== postId);
+        savePosts();
+        renderPosts();
+      }
+    }
+
+    function renderPosts() {
+      const container = document.getElementById('posts-container');
+      container.innerHTML = '';
+      posts.forEach(post => {
+        const postElement = document.createElement('div');
+        postElement.className = 'card';
+        postElement.innerHTML = `
+          <div class="post-header">
+            <h3 class="post-title">${post.title}</h3>
+            <button onclick="deletePost(${post.id})" class="btn" style="background: #555; font-size: 0.9rem;">Deletar</button>
+          </div>
+          <p class="post-content">${post.content}</p>
+          <div class="replies">
+            <h4>Respostas:</h4>
+            ${post.replies.map(reply => `<p class="reply">${reply}</p>`).join('')}
+            <div style="margin-top: 15px;">
+              <input id="reply-input-${post.id}" class="input-field" type="text" placeholder="Escreva uma resposta...">
+              <button onclick="addReply(${post.id})" class="btn">Responder</button>
+            </div>
+          </div>
+        `;
+        container.appendChild(postElement);
+      });
+    }
+
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      sidebar.classList.toggle('open');
+    }
+
+    window.onload = loadPosts;
+  </script>
+</body>
+    <script src="js/js.js"></script> 
+</html>

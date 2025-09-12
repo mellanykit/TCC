@@ -199,4 +199,229 @@
       font-size: 36px;   
     }
 
-    
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Alice', sans-serif;
+}
+
+body {
+    background: linear-gradient(to right, #121212 50%, black 50%);
+    color: #fff;
+}
+
+/* começo nav var */
+header {
+    background: linear-gradient(to right, #DC143C, #FF4500);
+    padding: 40px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 110px;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.menu-icon {
+    font-size: 20px;
+    cursor: pointer;
+    margin-right: 15px;
+}
+
+.logo {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Alice', serif;
+    font-size: 25px;
+    font-weight: normal;
+    margin-left: 15px;
+}
+
+@media screen and (max-width: 1020px) {
+    .logo {
+        font-size: 20px;
+        margin: 10px;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    header {
+        padding: 20px 30px;
+    }
+
+    .logo {
+        font-size: 12px;
+        margin: 20px;
+    }
+}
+
+/* fim nav bar */
+.news-section h1 {
+    font-family: 'Alfa Slab One', serif;
+    font-size: 36px;
+    font-weight: normal;
+    text-align: center;
+}
+nav {
+    display: flex;
+    align-items: center;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+}
+
+nav a:hover {
+    color: black;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -250px;
+    width: 250px;
+    height: 100%;
+    background-color: black;
+    padding: 20px;
+    box-sizing: border-box;
+    transition: left 0.3s ease;
+    z-index: 1000;
+}
+
+.sidebar a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    margin: 15px 0;
+    font-size: 16px;
+}
+
+.sidebar a:hover {
+    color: #DC143C;
+}
+
+.sidebar.open {
+    left: 0;
+}
+
+.close-btn {
+    font-size: 24px;
+    color: white;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+}
+
+/* Inicio exercicio de respiração */
+.container {
+    position: relative;
+    width: 200px;
+    height: 200px;
+}
+
+.circle {
+    width: 100%;
+    height: 100%;
+    background: #4a90e2;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 20px;
+    animation: breathe 12s infinite paused;
+}
+
+@keyframes breathe {
+    0%, 33.33% { transform: scale(0.8); background: #4a90e2; }
+    33.33%, 66.67% { transform: scale(1.2); background: #50c878; }
+    66.67%, 100% { transform: scale(0.8); background: #ff6b6b; }
+}
+
+svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+}
+
+.progress {
+    fill: none;
+    stroke: #ddd;
+    stroke-width: 10;
+}
+
+.progress-bar {
+    fill: none;
+    stroke: #333;
+    stroke-width: 10;
+    stroke-dasharray: 565.48;
+    stroke-dashoffset: 565.48;
+    animation: progress 12s linear infinite paused;
+}
+
+@keyframes progress {
+    0% { stroke-dashoffset: 565.48; }
+    33.33% { stroke-dashoffset: 0; }
+    33.34% { stroke-dashoffset: 565.48; }
+    66.67% { stroke-dashoffset: 0; }
+    66.68% { stroke-dashoffset: 565.48; }
+    100% { stroke-dashoffset: 0; }
+}
+
+.controls {
+    margin-bottom: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+select, button {
+    padding: 5px 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* Fim exercício de respiração */
+.form-container {
+    background-color: black;
+    width: 500px;
+    border-radius: 50px;
+    padding: 30px 60px;
+    margin: 0 0 0 200px;
+    float: left;
+    text-align: center;
+    color: white;
+}
+
+.form-container p {
+    font-family: 'Alfa Slab One', serif;
+    margin-top: 20px;
+    font-size: 36px;
+}
+
+.right-container {
+    background-color: #1a1a1a;
+    width: 500px;
+    border-radius: 50px;
+    padding: 30px 60px;
+    margin: 0 200px 0 0;
+    float: right;
+    text-align: center;
+    color: white;
+}
+.right-container p {
+    font-family: 'Alfa Slab One', serif;
+    margin-top: 20px;
+    font-size: 36px;
+}
