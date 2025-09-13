@@ -45,8 +45,8 @@
             <div class="error" id="password-required-error">Senha é obrigatória</div>
             </div>
 
-            <button type="button" class="solid" id ="login-button" disabled="true">Login</button>
-            <button type="button" id="recover-password-button" disabled="true" class="clear" >Recuperar senha</button>
+            <button type="button" class="solid" id ="login-button" disabled="true" onclick="login()">Login</button>
+            <button type="button" id="recover-password-button" disabled="true" onclick="recoverPassword()" class="clear" >Recuperar senha</button>
             <br>
           </form>
     
@@ -65,9 +65,26 @@
         <a href="zen.html">Zen Area</a>
         </div>
       </section>
-
+</body>
     <script src="js/js.js"></script> 
     <script src="js/login.js"></script>
-</body>   
+    <script src="js/loading.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/12.2.1/firebase-app-compat.js"> </script>
+    <script src="https://www.gstatic.com/firebasejs/12.2.1/firebase-auth-compat.js"> </script>
+    <script>
+      const firebaseConfig = {
+      apiKey: "AIzaSyB56rpw--TZSsGvepsMmTChfketb-g0XbA",
+      authDomain: "bancodedados-b2c24.firebaseapp.com",
+      projectId: "bancodedados-b2c24",
+      storageBucket: "bancodedados-b2c24.firebasestorage.app",
+      messagingSenderId: "880842806241",
+      appId: "1:880842806241:web:0e8873834a95cf94acb8a0",
+      measurementId: "G-9DSXXY8HEM"
+      };
+
+      firebase.initializeApp(firebaseConfig);
+    </script>
+
+ 
 </head>
 </html>

@@ -10,6 +10,27 @@ function onChangePassword(){
     toggleButtonsDisable(); 
 }
 
+function login(){
+    firebase.auth().signInWithEmailAndPassword(
+        form.email().value, form.password().value
+    ).then(response =>{
+         window.location.href = "index.html";
+    }).catch(error=>{
+        alert(getErrorMessage(error));
+    });
+}
+
+
+
+function getErrorMessage(error){
+    if(error.code == "auth/invalid-credential"){
+        return "Usuário não encontrado!";
+    }
+    return error.message;
+}
+
+
+
 function isEmailValid(){
 
     const email = form.email().value;
