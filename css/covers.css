@@ -1,0 +1,215 @@
+/* Estilos originais mantidos */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Alice', sans-serif;
+}
+
+body {
+  background: #121212;
+  color: #fff;
+}
+
+header {
+  background: linear-gradient(to right, #DC143C, #FF4500);
+  padding: 40px 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 110px;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.menu-icon {
+  font-size: 20px;
+  cursor: pointer;
+  margin-right: 15px;
+}
+
+.logo {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Alice', serif;
+  font-size: 25px;
+  font-weight: normal;
+  margin-left: 15px;
+}
+
+@media screen and (max-width: 1020px) {
+  .logo {
+    font-size: 20px;
+    margin: 10px;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  header {
+    padding: 20px 30px;
+  }
+
+  .logo {
+    font-size: 12px;
+    margin: 20px;
+  }
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  margin-left: 20px;
+}
+
+nav a:hover {
+  color: black;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -250px;
+  width: 250px;
+  height: 100%;
+  background-color: black;
+  padding: 20px;
+  box-sizing: border-box;
+  transition: left 0.3s ease;
+  z-index: 1000;
+}
+
+.sidebar a {
+  display: block;
+  color: white;
+  text-decoration: none;
+  margin: 15px 0;
+  font-size: 16px;
+}
+
+.sidebar a:hover {
+  color: #DC143C;
+}
+
+.sidebar.open {
+  left: 0;
+}
+
+.close-btn {
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 15px;
+}
+
+/* Novos estilos para a seção de covers */
+.covers-section {
+  padding: 40px;
+  text-align: center;
+}
+
+.section-title {
+  font-family: 'Alfa Slab One', serif;
+  font-size: 2.5em;
+  margin-bottom: 20px;
+}
+
+.covers-container {
+  max-width: 800px;
+  margin: 0 auto;
+  background: #1e1e1e;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.covers-container h4 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.covers-container p {
+  margin-bottom: 20px;
+  color: #ccc;
+}
+
+#video-form {
+  margin-bottom: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+#video-form input {
+  padding: 10px;
+  font-size: 1em;
+  border: none;
+  border-radius: 5px;
+  background: #2a2a2a;
+  color: #fff;
+  width: 100%;
+  max-width: 300px;
+}
+
+#video-form button {
+  padding: 10px 20px;
+  background: #DC143C;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+#video-form button:hover {
+  background: #FF4500;
+}
+
+.video-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.video-item {
+  background: #2a2a2a;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.video-item h5 {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+  color: #FF4500;
+}
+
+.video-item iframe {
+  border-radius: 8px;
+  width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+  .covers-section {
+    padding: 20px;
+  }
+
+  .covers-container {
+    padding: 15px;
+  }
+
+  #video-form input,
+  #video-form button {
+    max-width: 100%;
+  }
+
+  .video-item iframe {
+    height: 150px;
+  }
+}

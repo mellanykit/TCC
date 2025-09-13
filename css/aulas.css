@@ -395,10 +395,10 @@ select, button {
 /* Fim exercício de respiração */
 .form-container {
     background-color: black;
-    width: 500px;
+    width: 600px;
     border-radius: 50px;
     padding: 30px 60px;
-    margin: 0 0 0 200px;
+    margin: 0 0 0 100px;
     float: left;
     text-align: center;
     color: white;
@@ -412,10 +412,10 @@ select, button {
 
 .right-container {
     background-color: #1a1a1a;
-    width: 500px;
-    border-radius: 50px;
+    width: 600px;
+    border-radius: 30px;
     padding: 30px 60px;
-    margin: 0 200px 0 0;
+    margin: 0 103px 0 0;
     float: right;
     text-align: center;
     color: white;
@@ -424,4 +424,30 @@ select, button {
     font-family: 'Alfa Slab One', serif;
     margin-top: 20px;
     font-size: 36px;
+}
+
+/* Estilos para os vídeos do YouTube */
+.video-item {
+    margin-bottom: 20px;
+}
+
+.video-item h3 {
+    font-family: 'Alice', sans-serif;
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.video-item iframe {
+    border-radius: 10px;
+    width: 100%;
+    height: 200px;
+}
+
+@media screen and (max-width: 768px) {
+    .right-container {
+        width: 90%;
+        margin: 20px auto;
+        float: none;
+    }
 }
