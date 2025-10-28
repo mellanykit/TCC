@@ -150,11 +150,31 @@
       padding: 20px;
       text-align: center;
     }
+    .creator-card a {
+      color: #DC143C;             /* Cor do link */
+      text-decoration: none;      /* Remove sublinhado */
+      font-weight: bold;           /* Negrito */
+      padding: 8px 15px;           /* Espaçamento interno */
+      border-radius: 5px;          /* Cantos arredondados */
+      transition: all 0.3s ease;   /* Animação suave */
+    }
+
+  .creator-card a:hover {
+    color: #fff;                 /* Cor do texto ao passar o mouse */
+    text-decoration: none;
+  }
+    
 
     .creator-card img {
-      width: 100%;
-      max-width: 200px;
-      margin-bottom: 15px;
+ 
+      width: 200px;
+      height: 200px;          /* Igual à largura para formar círculo */
+      border-radius: 50%;     /* Torna circular */
+      object-fit: cover;      /* Preenche o círculo */
+      border: 3px solid #fff; 
+      box-shadow: 0 0 15px rgba(217, 2, 70, 0.5);
+      display: block;
+      margin: 0 auto 15px;    /* Centraliza e dá margem inferior */
     }
 
     .creator-card h3 {

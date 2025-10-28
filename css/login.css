@@ -179,6 +179,20 @@
       background: red;
       display:none;
     }
+    #recover-password-button {
+    background: transparent;
+    border: 2px solid white;
+    color: white;
+    margin-top: 10px;
+    transition: all 0.3s ease;
+}
 
+#recover-password-button:hover:not(:disabled) {
+    background: white;
+    color: #DC143C;
+}
 
-   
+#recover-password-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}

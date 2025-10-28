@@ -166,3 +166,18 @@
       top: 10px;
       right: 15px;
     }
+    .error {
+    color: white;
+    background: red;
+    font-size: 12px;
+    padding: 4px 8px;
+    border-radius: 6px;
+    margin-top: 4px;
+    display: none;
+    text-align: left;
+}
+
+#cadastro-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}

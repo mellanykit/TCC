@@ -1,77 +1,114 @@
+// === VALIDAÇÃO DE E-MAIL ===
+function validateEmail(email) {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email);
+}
 
+// === FUNÇÕES DO FORMULÁRIO ===
 function onChangeEmail() {
     toggleEmailErrors();
     toggleButtonsDisable();
-    
 }
 
-function onChangePassword(){
+function onChangePassword() {
     togglePasswordErrors();
-    toggleButtonsDisable(); 
+    toggleButtonsDisable();
 }
 
-function login(){
+// === LOGIN ===
+function login() {
+    showLoading(); // se tiver loading.js
+
     firebase.auth().signInWithEmailAndPassword(
-        form.email().value, form.password().value
-    ).then(response =>{
-         window.location.href = "index.html";
-    }).catch(error=>{
+        form.email().value,
+        form.password().value
+    ).then(response => {
+        hideLoading();
+        window.location.href = "index.html";
+    }).catch(error => {
+        hideLoading();
         alert(getErrorMessage(error));
     });
 }
 
-
-
-function getErrorMessage(error){
-    if(error.code == "auth/invalid-credential"){
-        return "Usuário não encontrado!";
+function getErrorMessage(error) {
+    if (error.code === "auth/invalid-credential" || error.code === "auth/user-not-found") {
+        return "E-mail ou senha incorretos.";
+    }
+    if (error.code === "auth/wrong-password") {
+        return "Senha incorreta.";
     }
     return error.message;
 }
 
-
-
-function isEmailValid(){
-
+// === RECUPERAR SENHA (CORRIGIDA E INTEGRADA) ===
+function recoverPassword() {
     const email = form.email().value;
-    if(!email){
-        return false;
+
+    if (!email) {
+        toggleEmailErrors();
+        return;
     }
+
+    if (!validateEmail(email)) {
+        toggleEmailErrors();
+        return;
+    }
+
+    const btn = form.recoverpassword();
+    btn.disabled = true;
+    btn.textContent = 'Enviando...';
+
+    firebase.auth().sendPasswordResetEmail(email)
+        .then(() => {
+            alert(`Link enviado para ${email}! Verifique sua caixa de entrada e spam.`);
+            btn.textContent = 'Recuperar senha';
+            btn.disabled = false;
+        })
+        .catch((error) => {
+            let msg = 'Erro ao enviar e-mail.';
+            if (error.code === 'auth/user-not-found') {
+                msg = 'E-mail não cadastrado.';
+            } else if (error.code === 'auth/too-many-requests') {
+                msg = 'Muitas tentativas. Tente novamente mais tarde.';
+            }
+            alert(msg);
+            btn.textContent = 'Recuperar senha';
+            btn.disabled = false;
+        });
+}
+
+// === VALIDAÇÕES VISUAIS ===
+function isEmailValid() {
+    const email = form.email().value;
+    if (!email) return false;
     return validateEmail(email);
-
 }
 
-function toggleEmailErrors(){
+function isPasswordValid() {
+    return form.password().value.length > 0;
+}
+
+function toggleEmailErrors() {
     const email = form.email().value;
-    form.emailRequiredError().style.display = email ? "none":"block";
-    form.emailInvalidError().style.display = validateEmail(email) ? "none":"block";
+    form.emailRequiredError().style.display = email ? "none" : "block";
+    form.emailInvalidError().style.display = validateEmail(email) ? "none" : "block";
 }
 
-function togglePasswordErrors(){
+function togglePasswordErrors() {
     const password = form.password().value;
-    form.passwordRequiredError().style.display = password ? "none":"block";
-
+    form.passwordRequiredError().style.display = password ? "none" : "block";
 }
 
-function toggleButtonsDisable(){
-const emailValid = isEmailValid(); 
-form.recoverpassword().disabled=!emailValid;
+function toggleButtonsDisable() {
+    const emailValid = isEmailValid();
+    const passwordValid = isPasswordValid();
 
-const passwordValid = isPasswordValid();
-form.loginButton().disabled = !emailValid || !passwordValid;
-   
+    form.recoverpassword().disabled = !emailValid;
+    form.loginButton().disabled = !emailValid || !passwordValid;
 }
 
-function isPasswordValid(){
-
-    const password = form.password().value;
-    if(!password){
-        return false;
-    }
-    return true;
-
-}
-
+// === OBJETO FORM (mantido) ===
 const form = {
     email: () => document.getElementById('email'),
     emailRequiredError: () => document.getElementById('email-required-error'),
@@ -80,4 +117,15 @@ const form = {
     password: () => document.getElementById('password'),
     passwordRequiredError: () => document.getElementById('password-required-error'),
     recoverpassword: () => document.getElementById('recover-password-button')
+};
+
+// === FUNÇÕES DE LOADING (se existirem) ===
+function showLoading() {
+    const loading = document.getElementById('loading');
+    if (loading) loading.style.display = 'block';
+}
+
+function hideLoading() {
+    const loading = document.getElementById('loading');
+    if (loading) loading.style.display = 'none';
 }

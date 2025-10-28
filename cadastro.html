@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-
   <meta charset="UTF-8">
-  <title>MIC</title>
-  <link href="https://fonts.googleapis.com/css2?family=Alice&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Alfa Slab One&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/cadastro.css">
-  
-  <body>
+  <title>Cadastro – MIC</title>
 
-    <!-- Intérprete de Libras (Script do GOV BR) -->
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Alice&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/cadastro.css">
+
+  <!-- VLibras -->
   <div vw class="enabled">
     <div vw-access-button class="active"></div>
     <div vw-plugin-wrapper>
@@ -18,90 +19,103 @@
     </div>
   </div>
   <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-  <script>
-    new window.VLibras.Widget('https://vlibras.gov.br/app');
-  </script>
+  <script>new window.VLibras.Widget('https://vlibras.gov.br/app');</script>
+</head>
 
-    <header>
-      <div class="logo-container"><span class="menu-icon" onclick="toggleSidebar()">☰</span>
-      <div class="logo"><h1>MIC - Music Is Connection</h1></div></div> 
-      <nav>
-      <a href="#">Login</a>
+<body>
+  <!-- ==================== HEADER ==================== -->
+  <header>
+    <div class="logo-container">
+      <span class="menu-icon" onclick="toggleSidebar()">Menu</span>
+      <div class="logo"><h1>MIC - Music Is Connection</h1></div>
+    </div>
+    <nav>
+      <a href="login.html">Login</a>
       <a href="#">Cadastro</a>
       <a href="#">Sobre o site</a>
       <a href="#">Sobre as Criadoras</a>
     </nav>
-    </header>
-    <section class="news-section">
+  </header>
 
-        <br><br><br><br><br>
-  
-        <div class="form-container">
-          <img src="img/Logo.png" alt="Login" style="width: 200px;">
-          <h2>Cadastro</h2>
-          <br>
-    
-          <form onsubmit="cadastrar(event)">
-            <div style="text-align: left;">Nome completo:</div>
-            <input type="text" id="nome" required>
-    
-            <div style="text-align: left;">Data de nascimento:</div>
-            <input type="date" id="dataNasc" required>
-    
-            <div style="text-align: left;">Email:</div>
-            <input type="email" id="email" required>
-    
-            <div style="text-align: left;">Senha:</div>
-            <input type="password" id="senha" required>
-    
-            <div style="text-align: left;">Confirmar senha:</div>
-            <input type="password" id="confirmarSenha" required>
-    
-            <button type="submit">Cadastrar</button>
-          </form>
-    
-          <br><br>
-          Já tem uma conta? <a href="login.html">Faça login</a>
-        </div>
+  <!-- ==================== FORMULÁRIO ==================== -->
+  <section class="news-section">
+    <br><br><br><br><br>
 
-        <br><br><br>
-    
-        <div id="sidebar" class="sidebar">
-        <span class="close-btn" onclick="toggleSidebar()">×</span>
-        <a href="index.html">Página inicial</a>
-        <a href="eventos.html">Eventos</a>
-        <a href="aulas.html">Aulas</a>
-        <a href="cover.html">Covers</a>
-        <a href="forum.html">Fórum</a>
-        <a href="zen.html">Zen Area</a>
-        </div>
-    </section>
-    <script>
-      // Script JavaScript incorporado
-    
-      function logar(event){
-        event.preventDefault(); 
-        // Impede o comportamento padrão do formulário (recarregar a página)
-    
-        var login = document.getElementById('login').value;
-        // Pega o valor digitado no campo de email
-    
-        var senha = document.getElementById('senha').value;
-        // Pega o valor digitado no campo de senha
-    
-        if(login === "mell@gmail.com" && senha === "123"){
-          // Verifica se os dados são "admin"
-    
-          alert("Login bem-sucedido!");
-          // Exibe mensagem de sucesso
-        } else {
-          alert("Usuário ou senha incorretos!");
-          // Exibe mensagem de erro
-        }
-      }
-    </script>
+    <div class="form-container">
+      <img src="img/Logo.png" alt="MIC Logo" style="width: 200px;">
+      <h2>Cadastro</h2>
+      <br>
 
-    <script src="js/js.js"></script> 
-</body>   
-</head>
+      <form onsubmit="cadastrar(event)">
+        <!-- Nome -->
+        <div style="text-align: left;">Nome completo:</div>
+        <input type="text" id="nome" onchange="onChangeNome()" placeholder="Seu nome completo" required>
+        <div class="error" id="nome-required-error">Nome é obrigatório</div>
+
+        <!-- Data de Nascimento -->
+        <div style="text-align: left;">Data de nascimento:</div>
+        <input type="date" id="dataNasc" onchange="onChangeDataNasc()" required>
+        <div class="error" id="data-required-error">Data é obrigatória</div>
+        <div class="error" id="data-invalid-error">Você deve ter 13 anos ou mais</div>
+
+        <!-- Email -->
+        <div style="text-align: left;">Email:</div>
+        <input type="email" id="email" onchange="onChangeEmail()" placeholder="seuemail@gmail.com" required>
+        <div class="error" id="email-required-error">Email é obrigatório</div>
+        <div class="error" id="email-invalid-error">Email inválido</div>
+
+        <!-- Senha -->
+        <div style="text-align: left;">Senha:</div>
+        <input type="password" id="senha" onchange="onChangeSenha()" placeholder="Mínimo 6 caracteres" required>
+        <div class="error" id="senha-required-error">Senha é obrigatória</div>
+        <div class="error" id="senha-length-error">Senha deve ter pelo menos 6 caracteres</div>
+
+        <!-- Confirmar Senha -->
+        <div style="text-align: left;">Confirmar senha:</div>
+        <input type="password" id="confirmarSenha" onchange="onChangeConfirmarSenha()" placeholder="Repita a senha" required>
+        <div class="error" id="confirmar-required-error">Confirmação é obrigatória</div>
+        <div class="error" id="senha-mismatch-error">As senhas não coincidem</div>
+
+        <!-- Botão -->
+        <button type="submit" id="cadastro-button" disabled>Cadastrar</button>
+      </form>
+
+      <br><br>
+      Já tem uma conta? <a href="login.html">Faça login</a>
+    </div>
+
+    <br><br><br>
+
+    <!-- ==================== SIDEBAR ==================== -->
+    <div id="sidebar" class="sidebar">
+      <span class="close-btn" onclick="toggleSidebar()">×</span>
+      <a href="index.html">Página inicial</a>
+      <a href="eventos.html">Eventos</a>
+      <a href="aulas.html">Aulas</a>
+      <a href="forum.html">Fórum</a>
+      <a href="zen.html">Zen Area</a>
+      <a href="noticias.html">Notícias e Estudos</a>
+    </div>
+  </section>
+
+  <!-- ==================== SCRIPTS ==================== -->
+  <script src="js/js.js"></script>
+  <script src="js/cadastro.js"></script>
+  <script src="js/loading.js"></script>
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/12.2.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/12.2.1/firebase-auth-compat.js"></script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyB56rpw--TZSsGvepsMmTChfketb-g0XbA",
+      authDomain: "bancodedados-b2c24.firebaseapp.com",
+      projectId: "bancodedados-b2c24",
+      storageBucket: "bancodedados-b2c24.firebasestorage.app",
+      messagingSenderId: "880842806241",
+      appId: "1:880842806241:web:0e8873834a95cf94acb8a0"
+    };
+    firebase.initializeApp(firebaseConfig);
+  </script>
+</body>
 </html>
