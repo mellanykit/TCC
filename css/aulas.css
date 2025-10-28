@@ -198,6 +198,10 @@
       margin-top: 20px;
       font-size: 36px;   
     }
+    .form-container .dica-texto {
+    font-size: 17px !important; /* Força o tamanho menor */
+    margin-top: 15px;
+}
 
     * {
     margin: 0;
