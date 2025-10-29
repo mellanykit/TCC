@@ -21,7 +21,8 @@ function login() {
 
     firebase.auth().signInWithEmailAndPassword(
         form.email().value,
-        form.password().value
+        form.password().value 
+
     ).then(response => {
         hideLoading();
         window.location.href = "index.html";
@@ -43,39 +44,11 @@ function getErrorMessage(error) {
 
 // === RECUPERAR SENHA (CORRIGIDA E INTEGRADA) ===
 function recoverPassword() {
-    const email = form.email().value;
-
-    if (!email) {
-        toggleEmailErrors();
-        return;
-    }
-
-    if (!validateEmail(email)) {
-        toggleEmailErrors();
-        return;
-    }
-
-    const btn = form.recoverpassword();
-    btn.disabled = true;
-    btn.textContent = 'Enviando...';
-
-    firebase.auth().sendPasswordResetEmail(email)
-        .then(() => {
-            alert(`Link enviado para ${email}! Verifique sua caixa de entrada e spam.`);
-            btn.textContent = 'Recuperar senha';
-            btn.disabled = false;
-        })
-        .catch((error) => {
-            let msg = 'Erro ao enviar e-mail.';
-            if (error.code === 'auth/user-not-found') {
-                msg = 'E-mail não cadastrado.';
-            } else if (error.code === 'auth/too-many-requests') {
-                msg = 'Muitas tentativas. Tente novamente mais tarde.';
-            }
-            alert(msg);
-            btn.textContent = 'Recuperar senha';
-            btn.disabled = false;
-        });
+   firebase.auth().sendPasswordResetEmail(form.email().value).then(()=> {
+    alert('Email enviado com sucesso');
+   }).catch(error=>{
+    alert(getErrorMessage(error));
+   });
 }
 
 // === VALIDAÇÕES VISUAIS ===
