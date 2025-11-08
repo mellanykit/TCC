@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+
+  <meta charset="UTF-8">
+  <title>MIC</title>
+  <link href="https://fonts.googleapis.com/css2?family=Alice&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Alfa Slab One&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/zen.css">
+</head>
+  <body>
+    
+    <!-- Intérprete de Libras (Script do GOV BR) -->
+  <div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+      <div class="vw-plugin-top-wrapper"></div>
+    </div>
+  </div>
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+  <script>
+    new window.VLibras.Widget('https://vlibras.gov.br/app');
+  </script>
+
+    <header>
+        <div class="logo-container"><span class="menu-icon" onclick="toggleSidebar()">☰</span>
+          <div class="logo"><h1>MIC - Music Is Connection</h1></div> </div>
+            <nav>
+              <a href="#">Login</a>
+              <a href="#">Sobre o site</a>
+              <a href="#">Sobre as Criadoras</a>
+              &nbsp;&nbsp;&nbsp;
+              <button id="logout" type="button" class ="clear" onclick="logout()">Logout</button>
+          </nav>
+    </header>
+
+    <div id="sidebar" class="sidebar">
+        <span class="close-btn" onclick="toggleSidebar()">×</span>
+          <a href="index.html">Página inicial</a>
+          <a href="eventos.html">Eventos</a>
+          <a href="aulas.html">Aulas</a>
+          <a href="forum.html">Fórum</a>
+          <a href="zen.html">Zen Area</a>
+          <a href="noticias.html">Notícias e Estudos</a> 
+    </div>
+
+    <audio id="rainSound" src="mp3/dark-atmosphere-with-rain-352570.mp3" loop></audio>
+    <audio id="forestSound" src="mp3/soft-birds-sound-304132.mp3" loop></audio>
+    <audio id="oceanSound" src="mp3/sunset-by-the-sea-ambient-piano-music-and-calm-wave-sounds-8169.mp3" loop></audio>
+    <audio id="pianoSound" src="mp3/piano.mp3" loop></audio>
+    <audio id="violaoSound" src="mp3/instrumental-acoustic-guitar-music-401434.mp3" loop></audio>
+
+
+    <br>
+  <center><h1>Zen Area</h1></center>
+
+  <section class="container">
+
+  <h2>Escolha o tempo para relaxar</h2>
+
+    <br>
+    <center>
+  <select id="timeSelect">
+    <option value="60">1 minuto</option>
+    <option value="180">3 minutos</option>
+    <option value="300">5 minutos</option>
+    <option value="600">10 minutos</option>
+  </select>
+  </center>
+
+
+  <h3 id="timerDisplay">00:00</h3>
+
+<center>
+  <div class="btn-group">
+    <button id="startBtn">Iniciar</button>
+    <button id="pauseBtn">Pausar</button>
+    <button id="resetBtn">Resetar</button>
+  </div></center>
+
+
+  <hr>
+<div class="sound-buttons">
+    <h1>Escolha um som</h1>
+    <br><br><br>
+  <button id="rainBtn" class="btn">Chuva</button>
+  <button id="forestBtn" class="btn">Floresta</button>
+  <button id="oceanBtn" class="btn">Mar</button>
+  <button id="pianoBtn" class="btn">Piano</button>
+  <button id="violaoBtn" class="btn">Violão</button>
+</div>
+ 
+
+
+</section>
+
+
+      <script src="https://www.gstatic.com/firebasejs/12.2.1/firebase-app-compat.js"> </script>
+      <script src="https://www.gstatic.com/firebasejs/12.2.1/firebase-auth-compat.js"> </script>  
+      <script>
+      const firebaseConfig = {
+      apiKey: "AIzaSyB56rpw--TZSsGvepsMmTChfketb-g0XbA",
+      authDomain: "bancodedados-b2c24.firebaseapp.com",
+      projectId: "bancodedados-b2c24",
+      storageBucket: "bancodedados-b2c24.firebasestorage.app",
+      messagingSenderId: "880842806241",
+      appId: "1:880842806241:web:0e8873834a95cf94acb8a0",
+      measurementId: "G-9DSXXY8HEM"
+      };
+
+      firebase.initializeApp(firebaseConfig);
+    </script>
+    <script src="js/zen.js"></script>
+      <script src="js/js.js"></script>
+      <script src="js/index.js"></script>
+      <script src="js/auth.guard.js"></script>
+  </body>
+</html>

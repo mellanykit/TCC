@@ -54,96 +54,201 @@
     </div>
     <div id="posts-container"></div>
   </section>
-
   <script>
-    let posts = [];
+  let posts = [];
 
-    function loadPosts() {
-      const savedPosts = localStorage.getItem('forum-posts');
-      if (savedPosts) {
-        posts = JSON.parse(savedPosts);
-      }
+  function loadPosts() {
+    const savedPosts = localStorage.getItem('forum-posts');
+    if (savedPosts) {
+      posts = JSON.parse(savedPosts);
+    }
+    renderPosts();
+  }
+
+  function savePosts() {
+    localStorage.setItem('forum-posts', JSON.stringify(posts));
+  }
+
+  function createPost() {
+    const title = document.getElementById('post-title').value.trim();
+    const content = document.getElementById('post-content').value.trim();
+    const user = firebase.auth().currentUser;
+
+    if (!user) {
+      alert("Você precisa estar logado para postar.");
+      return;
+    }
+
+    if (title && content) {
+      const post = {
+        id: Date.now(),
+        title,
+        content,
+        email: user.email, // SALVA O EMAIL DO USUÁRIO
+        replies: []
+      };
+      posts.push(post);
+      document.getElementById('post-title').value = '';
+      document.getElementById('post-content').value = '';
+      savePosts();
+      renderPosts();
+    } else {
+      alert('Por favor, preencha o título e o conteúdo da postagem.');
+    }
+  }
+
+  function addReply(postId) {
+    const replyInput = document.getElementById(`reply-input-${postId}`);
+    const replyContent = replyInput.value.trim();
+    const user = firebase.auth().currentUser;
+
+    if (!user) {
+      alert("Você precisa estar logado para responder.");
+      return;
+    }
+
+    if (replyContent) {
+      const post = posts.find(p => p.id === postId);
+      post.replies.push({
+        text: replyContent,
+        email: user.email // SALVA O EMAIL DE QUEM RESPONDEU
+      });
+      replyInput.value = '';
+      savePosts();
+      renderPosts();
+    } else {
+      alert('Por favor, escreva uma resposta.');
+    }
+  }
+
+  function deletePost(postId) {
+    if (confirm('Tem certeza que deseja deletar esta postagem?')) {
+      posts = posts.filter(p => p.id !== postId);
+      savePosts();
       renderPosts();
     }
+  }
+  function deleteReply(postId, replyIndex) {
+  const user = firebase.auth().currentUser;
 
-    function savePosts() {
-      localStorage.setItem('forum-posts', JSON.stringify(posts));
-    }
+  if (!user) return;
 
-    function createPost() {
-      const title = document.getElementById('post-title').value.trim();
-      const content = document.getElementById('post-content').value.trim();
-      if (title && content) {
-        const post = {
-          id: Date.now(),
-          title,
-          content,
-          replies: []
-        };
-        posts.push(post);
-        document.getElementById('post-title').value = '';
-        document.getElementById('post-content').value = '';
-        savePosts();
-        renderPosts();
-      } else {
-        alert('Por favor, preencha o título e o conteúdo da postagem.');
-      }
-    }
+  const post = posts.find(p => p.id === postId);
 
-    function addReply(postId) {
-      const replyInput = document.getElementById(`reply-input-${postId}`);
-      const replyContent = replyInput.value.trim();
-      if (replyContent) {
-        const post = posts.find(p => p.id === postId);
-        post.replies.push(replyContent);
-        replyInput.value = '';
-        savePosts();
-        renderPosts();
-      } else {
-        alert('Por favor, escreva uma resposta.');
-      }
-    }
+  if (post.replies[replyIndex].email !== user.email) {
+    alert("Você só pode deletar suas próprias respostas.");
+    return;
+  }
 
-    function deletePost(postId) {
-      if (confirm('Tem certeza que deseja deletar esta postagem?')) {
-        posts = posts.filter(p => p.id !== postId);
-        savePosts();
-        renderPosts();
-      }
-    }
+  post.replies.splice(replyIndex, 1);
+  savePosts();
+  renderPosts();
+}
+  
+  function renderPosts() {
+  const container = document.getElementById('posts-container');
+  container.innerHTML = '';
 
-    function renderPosts() {
-      const container = document.getElementById('posts-container');
-      container.innerHTML = '';
-      posts.forEach(post => {
-        const postElement = document.createElement('div');
-        postElement.className = 'card';
-        postElement.innerHTML = `
-          <div class="post-header">
-            <h3 class="post-title">${post.title}</h3>
-            <button onclick="deletePost(${post.id})" class="btn" style="background: #555; font-size: 0.9rem;">Deletar</button>
-          </div>
-          <p class="post-content">${post.content}</p>
-          <div class="replies">
-            <h4>Respostas:</h4>
-            ${post.replies.map(reply => `<p class="reply">${reply}</p>`).join('')}
-            <div style="margin-top: 15px;">
-              <input id="reply-input-${post.id}" class="input-field" type="text" placeholder="Escreva uma resposta...">
-              <button onclick="addReply(${post.id})" class="btn">Responder</button>
-            </div>
-          </div>
-        `;
-        container.appendChild(postElement);
-      });
-    }
+  const user = firebase.auth().currentUser;
 
-    function toggleSidebar() {
-      const sidebar = document.getElementById('sidebar');
-      sidebar.classList.toggle('open');
-    }
+  posts.forEach(post => {
+    const isOwner = user && user.email === post.email;
 
-    window.onload = loadPosts;
-  </script>
+    const postElement = document.createElement('div');
+    postElement.className = 'card';
+    postElement.innerHTML = `
+      <div class="post-header">
+        <h3 class="post-title">${post.title}</h3>
+
+        <div>
+          ${isOwner ? `
+            <button onclick="editPost(${post.id})" class="btn" style="background:#444; font-size:0.9rem; margin-right:5px;">Editar</button>
+            <button onclick="deletePost(${post.id})" class="btn" style="background:#555; font-size:0.9rem;">Deletar</button>
+          ` : ``}
+        </div>
+      </div>
+
+      <p class="post-content">${post.content}</p>
+      <p class="post-user">— Postado por: <strong>${post.email}</strong></p>
+
+      <div class="replies">
+        <h4>Respostas:</h4>
+        ${post.replies.map((reply, index) => {
+          const isReplyOwner = user && user.email === reply.email;
+          return `
+            <p class="reply">
+              ${reply.text}<br>
+              <span class="reply-user">— Respondido por: <strong>${reply.email}</strong></span>
+
+              ${isReplyOwner ? `
+                <button onclick="editReply(${post.id}, ${index})" class="btn" style="background:#333; padding:4px 10px; font-size:0.75rem; margin-top:4px;">Editar Resposta</button>
+                <button onclick="deleteReply(${post.id}, ${index})" class="btn" style="background:#444; padding:4px 10px; font-size:0.75rem; margin-top:4px;">Deletar Resposta</button>
+              ` : ``}
+            </p>
+          `;
+        }).join('')}
+
+        <div style="margin-top: 15px;">
+          <input id="reply-input-${post.id}" class="input-field" type="text" placeholder="Escreva uma resposta...">
+          <button onclick="addReply(${post.id})" class="btn">Responder</button>
+        </div>
+      </div>
+    `;
+    container.appendChild(postElement);
+  });
+}
+
+  function toggleSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    sidebar.classList.toggle('open');
+  }
+
+  function editPost(postId) {
+  const user = firebase.auth().currentUser;
+  if (!user) return;
+
+  const post = posts.find(p => p.id === postId);
+
+  if (post.email !== user.email) {
+    alert("Você só pode editar suas próprias postagens.");
+    return;
+  }
+
+  const newTitle = prompt("Edite o título da postagem:", post.title);
+  const newContent = prompt("Edite o conteúdo da postagem:", post.content);
+
+  if (newTitle && newContent) {
+    post.title = newTitle.trim();
+    post.content = newContent.trim();
+    savePosts();
+    renderPosts();
+  }
+}
+
+function editReply(postId, replyIndex) {
+  const user = firebase.auth().currentUser;
+  if (!user) return;
+
+  const post = posts.find(p => p.id === postId);
+  const reply = post.replies[replyIndex];
+
+  if (reply.email !== user.email) {
+    alert("Você só pode editar suas próprias respostas.");
+    return;
+  }
+
+  const newText = prompt("Edite sua resposta:", reply.text);
+
+  if (newText) {
+    reply.text = newText.trim();
+    savePosts();
+    renderPosts();
+  }
+}
+
+  window.onload = loadPosts;
+</script>
+
 </body>
 <script src="https://www.gstatic.com/firebasejs/12.2.1/firebase-app-compat.js"> </script>
       <script src="https://www.gstatic.com/firebasejs/12.2.1/firebase-auth-compat.js"> </script>  

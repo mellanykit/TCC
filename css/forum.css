@@ -218,3 +218,18 @@ nav button:active {
 #logout {
   display: none; /* escondido por padrão */
 }
+
+.post-user {
+  font-size: 0.85rem;
+  color: #aaa;
+  margin-top: -5px;
+  margin-bottom: 15px;
+  display: block;
+}
+
+.reply-user {
+  font-size: 0.75rem;
+  color: #777;
+  display: block;
+  margin-top: 4px;
+}
