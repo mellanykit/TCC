@@ -31,9 +31,10 @@
     </div>
     <nav>
       <a href="login.html">Login</a>
-      <a href="#">Cadastro</a>
       <a href="#">Sobre o site</a>
       <a href="#">Sobre as Criadoras</a>
+      &nbsp;&nbsp;&nbsp;
+      <button id="logout" type="button" class ="clear" onclick="logout()">Logout</button>
     </nav>
   </header>
 
@@ -98,11 +99,6 @@
     </div>
   </section>
 
-  <!-- ==================== SCRIPTS ==================== -->
-  <script src="js/js.js"></script>
-  <script src="js/cadastro.js"></script>
-  <script src="js/loading.js"></script>
-
   <!-- Firebase -->
   <script src="https://www.gstatic.com/firebasejs/12.2.1/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/12.2.1/firebase-auth-compat.js"></script>
@@ -117,5 +113,10 @@
     };
     firebase.initializeApp(firebaseConfig);
   </script>
+  <!-- ==================== SCRIPTS ==================== -->
+  <script src="js/js.js"></script>
+  <script src="js/cadastro.js"></script>
+  <script src="js/loading.js"></script>
+  <script src="js/index.js"></script>
 </body>
 </html>

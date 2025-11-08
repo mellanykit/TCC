@@ -7,7 +7,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Alice&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Alfa Slab One&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/aulas.css">
-
+</head>
   <body>
 
     <!-- Intérprete de Libras (Script do GOV BR) -->
@@ -27,9 +27,10 @@
           <div class="logo"><h1>MIC - Music Is Connection</h1></div> </div>
             <nav>
               <a href="#">Login</a>
-              <a href="#">Cadastro</a>
               <a href="#">Sobre o site</a>
               <a href="#">Sobre as Criadoras</a>
+              &nbsp;&nbsp;&nbsp;
+              <button id="logout" type="button" class ="clear" onclick="logout()">Logout</button>
           </nav>
     </header>
     
@@ -85,10 +86,27 @@
     <div id="video-list"></div> <!-- Adicionado para exibir vídeos -->
   </div>
 
+  <script src="https://www.gstatic.com/firebasejs/12.2.1/firebase-app-compat.js"> </script>
+      <script src="https://www.gstatic.com/firebasejs/12.2.1/firebase-auth-compat.js"> </script>  
+      <script>
+      const firebaseConfig = {
+      apiKey: "AIzaSyB56rpw--TZSsGvepsMmTChfketb-g0XbA",
+      authDomain: "bancodedados-b2c24.firebaseapp.com",
+      projectId: "bancodedados-b2c24",
+      storageBucket: "bancodedados-b2c24.firebasestorage.app",
+      messagingSenderId: "880842806241",
+      appId: "1:880842806241:web:0e8873834a95cf94acb8a0",
+      measurementId: "G-9DSXXY8HEM"
+      };
+
+      firebase.initializeApp(firebaseConfig);
+    </script>
 
     <script src="js/js.js"></script> 
     <script src="js/jsaulas.js"></script>
     <script src="js/yt.js"></script> 
+    <script src="js/auth.guard.js"></script>
+    <script src="js/index.js"></script>
 </body>
-</head>
+
 </html>

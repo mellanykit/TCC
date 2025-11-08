@@ -196,3 +196,29 @@
     opacity: 0.6;
     cursor: not-allowed;
 }
+
+    nav button {
+  background: transparent;
+  color: white;
+  border: 2px solid white;
+  border-radius: 12px;
+  padding: 8px 16px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Efeito ao passar o mouse */
+nav button:hover {
+  background: white;
+  color: #DC143C; /* mesma cor do gradiente do header */
+  transform: scale(1.05);
+}
+
+/* Estado clicado */
+nav button:active {
+  transform: scale(0.95);
+}
+#logout {
+  display: none; /* escondido por padrão */
+}

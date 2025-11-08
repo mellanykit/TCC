@@ -6,10 +6,10 @@
   <title>MIC</title>
   <link href="https://fonts.googleapis.com/css2?family=Alice&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Alfa Slab One&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/noticias.css">
+  <link rel="stylesheet" href="css/index.css">
 
   <body>
-    
+
     <!-- Intérprete de Libras (Script do GOV BR) -->
   <div vw class="enabled">
     <div vw-access-button class="active"></div>
@@ -23,18 +23,16 @@
   </script>
 
     <header>
-        <div class="logo-container"><span class="menu-icon" onclick="toggleSidebar()">☰</span>
-          <div class="logo"><h1>MIC - Music Is Connection</h1></div> </div>
-            <nav>
-              <a href="#">Login</a>
-              <a href="#">Sobre o site</a>
-              <a href="#">Sobre as Criadoras</a>
-              &nbsp;&nbsp;&nbsp;
-              <button id="logout" type="button" class ="clear" onclick="logout()">Logout</button>
-          </nav>
+      <div class="logo-container"><span class="menu-icon" onclick="toggleSidebar()">☰</span>
+        <div class="logo"><h1>MIC - Music Is Connection</h1></div></div> 
+        <nav>
+          <a href="#">Login</a>
+          <a href="#">Sobre o site</a>
+          <a href="#">Sobre as Criadoras</a>
+        </nav>
     </header>
-
-    <div id="sidebar" class="sidebar">
+    
+      <div id="sidebar" class="sidebar">
         <span class="close-btn" onclick="toggleSidebar()">×</span>
           <a href="index.html">Página inicial</a>
           <a href="eventos.html">Eventos</a>
@@ -43,43 +41,31 @@
           <a href="zen.html">Zen Area</a>
           <a href="noticias.html">Notícias e Estudos</a> 
     </div>
-      
-    <section>
-
-    <h3 class="section-title">Notícias e Estudos</h3>
-
-      <div class="cards">
-
-        <div class="card">
-          a
-          </div>
-
-          <div class="card">
-            b
-          </div>
-
-          <div class="card">
-            c
-          </div>
-
-        </div>
-
-      </section>
-      <script src="https://www.gstatic.com/firebasejs/12.2.1/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/12.2.1/firebase-auth-compat.js"></script>
-  <script>
-    const firebaseConfig = {
+    <br><br><br>
+    <center><h1>Para acessar essa página você precisa estar logado!</h1></center>
+    <br>
+    <center><a href="login.html"><button class="btn">Fazer Login</button></a></center>
+</body>
+    <script src="https://www.gstatic.com/firebasejs/12.2.1/firebase-app-compat.js"> </script>
+    <script src="https://www.gstatic.com/firebasejs/12.2.1/firebase-auth-compat.js"> </script>
+    <script>
+      const firebaseConfig = {
       apiKey: "AIzaSyB56rpw--TZSsGvepsMmTChfketb-g0XbA",
       authDomain: "bancodedados-b2c24.firebaseapp.com",
       projectId: "bancodedados-b2c24",
       storageBucket: "bancodedados-b2c24.firebasestorage.app",
       messagingSenderId: "880842806241",
-      appId: "1:880842806241:web:0e8873834a95cf94acb8a0"
-    };
-    firebase.initializeApp(firebaseConfig);
-  </script>
-      <script src="js/js.js"></script> 
-      <script src="js/index.js"></script>   
-  </body>
+      appId: "1:880842806241:web:0e8873834a95cf94acb8a0",
+      measurementId: "G-9DSXXY8HEM"
+      };
+
+      firebase.initializeApp(firebaseConfig);
+    </script>
+
+    <script src="js/js.js"></script> 
+    <script src="js/login.js"></script>
+    <script src="js/loading.js"></script>
+
+ 
 </head>
 </html>

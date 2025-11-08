@@ -102,3 +102,9 @@ function hideLoading() {
     const loading = document.getElementById('loading');
     if (loading) loading.style.display = 'none';
 }
+
+firebase.auth().onAuthStateChanged(user =>{
+    if (user){
+        window.location.href = "index.html"
+    }
+})

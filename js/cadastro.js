@@ -1,3 +1,9 @@
+firebase.auth().onAuthStateChanged(function(user){
+    if (user){
+        window.location.href = "index.html"
+    }
+})
+
 // === VALIDAÇÃO DE E-MAIL ===
 function validateEmail(email) {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;

@@ -44,3 +44,15 @@ document.addEventListener('DOMContentLoaded', () => {
 function validateEmail(email){
     return /\S+@\S+\.\S+/.test(email);
 }
+
+firebase.auth().onAuthStateChanged(user => {
+  const logout = document.getElementById('logout');
+
+  if (user) {
+    // Usuário logado → mostra o botão
+    logout.style.display = 'inline-block';
+  } else {
+    // Usuário não logado → esconde o botão
+    logout.style.display = 'none';
+  }
+});
