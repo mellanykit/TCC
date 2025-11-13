@@ -67,7 +67,7 @@
     /*fim nav bar*/
     .news-section h1 {
       font-family: 'Alfa Slab One', serif; 
-      font-size: 36px; 
+      font-size: 64px; 
       font-weight: normal; 
       text-align: center; 
     }
@@ -212,7 +212,7 @@
 
     /* Imagem do card */
     .card img {
-      width: 100%; /* Ocupa toda a largura */
+      width: 50%; /* Ocupa toda a largura */
       border-radius: 10px; /* Bordas arredondadas */
       margin-bottom: 15px;
     }
